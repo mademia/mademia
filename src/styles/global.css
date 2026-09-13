@@ -1,0 +1,209 @@
+:root {
+  --color-bg: #FBF7F2;
+  --color-surface: #FFFFFF;
+  --color-primary: #C97B57;
+  --color-primary-dark: #A85F3F;
+  --color-secondary: #7C9885;
+  --color-text: #2E2A26;
+  --color-text-light: #6B6259;
+  --color-border: #E8DFD3;
+  --color-success: #7C9885;
+  --color-warning: #D9A441;
+  --color-danger: #C15B4A;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 16px rgba(46, 42, 38, 0.08);
+  --shadow-hover: 0 8px 24px rgba(46, 42, 38, 0.12);
+  --font-heading: 'Georgia', 'Times New Roman', serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --max-width: 1200px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; }
+input, select, textarea { font-family: inherit; font-size: 1rem; }
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  white-space: nowrap;
+}
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+.btn-primary:hover { background: var(--color-primary-dark); }
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--color-primary);
+  color: var(--color-primary-dark);
+}
+.btn-outline:hover { background: rgba(201,123,87,0.08); }
+
+.btn-whatsapp {
+  background: #25D366;
+  color: white;
+}
+.btn-whatsapp:hover { background: #1EBE5A; }
+
+.btn-danger {
+  background: transparent;
+  border: 1.5px solid var(--color-danger);
+  color: var(--color-danger);
+}
+
+.btn-sm { padding: 8px 16px; font-size: 0.85rem; }
+.btn-block { width: 100%; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Card */
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+/* Inputs */
+.field { margin-bottom: 16px; }
+.field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.badge-success { background: rgba(124,152,133,0.15); color: #4E6E58; }
+.badge-warning { background: rgba(217,164,65,0.18); color: #8A6417; }
+.badge-danger { background: rgba(193,91,74,0.15); color: #93392A; }
+.badge-muted { background: rgba(107,98,89,0.1); color: var(--color-text-light); }
+
+.grid {
+  display: grid;
+  gap: 24px;
+}
+.grid-products {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--color-text-light);
+}
+
+.section { padding: 56px 0; }
+.section-title { font-size: 1.8rem; margin-bottom: 8px; }
+.section-subtitle { color: var(--color-text-light); margin-bottom: 32px; }
+
+@media (max-width: 640px) {
+  .section { padding: 36px 0; }
+  .section-title { font-size: 1.4rem; }
+}
+
+/* Header responsive nav */
+.site-nav {
+  display: flex;
+  gap: 28px;
+}
+.menu-toggle { display: none; background: none; border: none; font-size: 1.4rem; }
+
+@media (max-width: 640px) {
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--color-bg);
+    flex-direction: column;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .site-nav.nav-open { display: flex; }
+  .menu-toggle { display: inline-block; }
+}
+
+/* Producto: detalle responsive */
+.product-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+@media (max-width: 720px) {
+  .product-detail-grid { grid-template-columns: 1fr; }
+}
+
+/* Home hero responsive */
+.home-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+@media (max-width: 720px) {
+  .home-hero-grid { grid-template-columns: 1fr; }
+}
+
+/* Admin: tablas responsive */
+@media (max-width: 900px) {
+  table { font-size: 0.85rem; }
+}

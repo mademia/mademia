@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MadeMía! — Más que muebles, es vida en tu hogar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --olive:#56634E;
+    --olive-dark:#454F3E;
+    --sage:#8D9A82;
+    --ivory:#F7F3EA;
+    --sand:#E8DFD1;
+    --walnut:#8A6F52;
+    --terracotta:#B86F55;
+    --terracotta-dark:#A15E45;
+    --charcoal:#292B27;
+    --line:rgba(41,43,39,0.12);
+    --serif:'Fraunces', Georgia, serif;
+    --sans:'Karla', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ivory);
+    color:var(--charcoal);
+    font-family:var(--sans);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit; cursor:pointer; border:none; background:none;}
+  h1,h2,h3{font-family:var(--serif); font-weight:500; margin:0; color:var(--charcoal);}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+  .leaf{display:inline-block; vertical-align:-2px;}
+
+  /* Motion respect */
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ---------- Botones ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 28px; border-radius:999px;
+    font-family:var(--sans); font-weight:700; font-size:0.95rem;
+    letter-spacing:0.01em;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    white-space:nowrap;
+  }
+  .btn:active{transform:scale(0.97);}
+  .btn-primary{background:var(--olive); color:var(--ivory);}
+  .btn-primary:hover{background:var(--olive-dark); box-shadow:0 6px 18px rgba(86,99,78,0.35);}
+  .btn-cta{background:var(--terracotta); color:var(--ivory);}
+  .btn-cta:hover{background:var(--terracotta-dark); box-shadow:0 6px 18px rgba(184,111,85,0.4);}
+  .btn-secondary{background:var(--sand); color:var(--charcoal);}
+  .btn-secondary:hover{background:#DED2BE;}
+  .btn-ghost{background:transparent; border:1.5px solid var(--sage); color:var(--olive-dark);}
+  .btn-ghost:hover{background:rgba(141,154,130,0.12);}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:80;
+    background:var(--olive); color:var(--ivory);
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    height:76px; gap:24px;
+  }
+  .logo{display:flex; align-items:center; gap:10px;}
+  .logo-word{
+    font-family:var(--serif); font-size:1.55rem; font-weight:600; color:var(--ivory);
+    letter-spacing:0.01em;
+  }
+  .logo-word em{font-style:italic; font-weight:500; color:var(--sand);}
+  nav.main-nav{display:flex; align-items:center; gap:26px;}
+  nav.main-nav a{
+    font-size:0.88rem; font-weight:600; color:rgba(247,243,234,0.88);
+    padding:6px 2px; border-bottom:2px solid transparent;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  nav.main-nav a:hover{color:var(--ivory); border-color:var(--sand);}
+  nav.main-nav a.highlight{
+    background:var(--terracotta); color:var(--ivory);
+    padding:9px 16px; border-radius:999px; border-bottom:none;
+  }
+  nav.main-nav a.highlight:hover{background:var(--terracotta-dark);}
+  .menu-toggle{display:none; color:var(--ivory); font-size:1.5rem; background:none;}
+  .header-cart{color:var(--ivory); font-size:1.25rem; position:relative;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    background:linear-gradient(180deg, var(--olive) 0%, var(--olive) 38%, var(--ivory) 38%);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:0; align-items:end;
+  }
+  .hero-copy{
+    padding:64px 0 56px; color:var(--ivory); position:relative; z-index:2;
+  }
+  .hero-eyebrow-leaf{margin-bottom:18px;}
+  .hero-title{
+    font-size:clamp(2.1rem, 4.4vw, 3.4rem);
+    line-height:1.08; color:var(--ivory); max-width:11ch;
+  }
+  .hero-title .accent{
+    display:block; font-style:italic; font-weight:500; color:var(--sand);
+    font-size:0.62em; margin-top:6px;
+  }
+  .hero-sub{
+    font-size:1.05rem; color:rgba(247,243,234,0.85); max-width:38ch;
+    margin:22px 0 34px;
+  }
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .hero-visual{
+    position:relative; align-self:stretch;
+    display:flex; align-items:flex-end; justify-content:center;
+    padding-top:24px;
+  }
+  .hero-visual svg{width:100%; height:auto; max-width:520px;}
+
+  /* ---------- Categorías ---------- */
+  .cat-strip{padding:34px 0 10px; background:var(--ivory);}
+  .cat-scroll{
+    display:flex; gap:12px; overflow-x:auto; padding-bottom:6px;
+    scrollbar-width:none;
+  }
+  .cat-scroll::-webkit-scrollbar{display:none;}
+  .cat-chip{
+    flex:0 0 auto; display:flex; align-items:center; gap:8px;
+    background:var(--sand); color:var(--charcoal);
+    padding:11px 20px; border-radius:999px; font-weight:600; font-size:0.88rem;
+    transition:background .15s ease, transform .15s ease;
+  }
+  .cat-chip:hover{background:#DED2BE; transform:translateY(-2px);}
+  .cat-chip.featured{background:var(--olive); color:var(--ivory);}
+  .cat-chip.featured:hover{background:var(--olive-dark);}
+
+  /* ---------- Secciones genéricas ---------- */
+  .section{padding:64px 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:24px;
+    margin-bottom:36px; flex-wrap:wrap;
+  }
+  .section-title{font-size:clamp(1.5rem, 2.6vw, 2.1rem);}
+  .section-title .accent-word{font-style:italic; color:var(--terracotta);}
+  .section-desc{color:#5C5A52; max-width:46ch; margin-top:8px; font-size:0.98rem;}
+
+  /* ---------- Combos destacados ---------- */
+  .combos{background:var(--sand);}
+  .combo-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;}
+  .combo-card{
+    background:var(--ivory); border-radius:20px; overflow:hidden;
+    box-shadow:0 2px 0 var(--line);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .combo-card:hover{transform:translateY(-4px); box-shadow:0 16px 30px rgba(41,43,39,0.14);}
+  .combo-media{aspect-ratio:4/3; background:var(--sage); position:relative;}
+  .combo-tag{
+    position:absolute; top:14px; left:14px;
+    background:var(--terracotta); color:var(--ivory);
+    font-size:0.72rem; font-weight:700; padding:6px 13px; border-radius:999px;
+  }
+  .combo-body{padding:20px 22px 24px;}
+  .combo-body h3{font-size:1.15rem; margin-bottom:6px;}
+  .combo-body p{font-size:0.88rem; color:#5C5A52; margin:0 0 16px;}
+  .combo-price{font-family:var(--serif); font-size:1.2rem; color:var(--olive-dark); margin-bottom:16px;}
+
+  /* ---------- Productos ---------- */
+  .product-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:22px;}
+  .product-card{
+    background:var(--ivory); border:1px solid var(--line); border-radius:18px; overflow:hidden;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .product-card:hover{transform:translateY(-4px); box-shadow:0 14px 26px rgba(41,43,39,0.10);}
+  .product-media{aspect-ratio:1/1; background:var(--sand); position:relative;}
+  .badge-pill{
+    position:absolute; top:12px; left:12px;
+    font-size:0.68rem; font-weight:700; padding:5px 11px; border-radius:999px;
+    display:flex; align-items:center; gap:4px;
+  }
+  .badge-new{background:var(--sage); color:var(--ivory);}
+  .badge-off{
+    background:var(--terracotta); color:var(--ivory);
+    border-radius:999px; width:44px; height:44px; padding:0;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    font-size:0.68rem; line-height:1.1;
+    top:12px; right:12px; left:auto;
+  }
+  .product-body{padding:16px 18px 20px;}
+  .product-body h4{font-family:var(--serif); font-weight:500; font-size:1rem; margin-bottom:4px;}
+  .product-meta{font-size:0.78rem; color:#787468; margin-bottom:10px;}
+  .product-price{font-family:var(--serif); font-size:1.05rem; color:var(--olive-dark); margin-bottom:14px;}
+  .product-price .old{
+    font-family:var(--sans); font-size:0.8rem; color:#9A9488;
+    text-decoration:line-through; margin-left:8px;
+  }
+  .btn-quote{
+    width:100%; justify-content:center; padding:11px; font-size:0.82rem;
+    background:var(--olive); color:var(--ivory); border-radius:999px; display:flex; gap:6px; align-items:center;
+    transition:background .15s ease;
+  }
+  .btn-quote:hover{background:var(--olive-dark);}
+
+  /* ---------- Inspiración ---------- */
+  .inspire{background:var(--olive); color:var(--ivory);}
+  .inspire .section-desc{color:rgba(247,243,234,0.78);}
+  .inspire .section-title{color:var(--ivory);}
+  .inspire-grid{
+    display:grid; grid-template-columns:1.3fr 1fr 1fr; grid-template-rows:1fr 1fr; gap:16px;
+    height:520px;
+  }
+  .inspire-item{
+    position:relative; border-radius:18px; overflow:hidden; background:var(--sage);
+  }
+  .inspire-item:first-child{grid-row:1/3;}
+  .inspire-caption{
+    position:absolute; left:16px; bottom:16px; right:16px;
+    color:var(--ivory); font-family:var(--serif); font-size:1.05rem;
+    text-shadow:0 2px 10px rgba(0,0,0,0.35);
+  }
+  .inspire-overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(41,43,39,0) 45%, rgba(41,43,39,0.55) 100%);
+  }
+
+  /* ---------- Confianza ---------- */
+  .trust{padding:60px 0; background:var(--ivory);}
+  .trust-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:32px; text-align:left;
+  }
+  .trust-item{padding-left:0;}
+  .trust-item .leaf{color:var(--terracotta); margin-bottom:14px;}
+  .trust-item h3{font-size:1.15rem; margin-bottom:8px;}
+  .trust-item p{color:#5C5A52; font-size:0.92rem; margin:0;}
+
+  /* ---------- CTA final ---------- */
+  .final-cta{
+    background:var(--terracotta); color:var(--ivory);
+    padding:64px 0; text-align:center; position:relative; overflow:hidden;
+  }
+  .final-cta h2{color:var(--ivory); font-size:clamp(1.6rem,3.2vw,2.4rem); max-width:22ch; margin:0 auto 14px;}
+  .final-cta p{color:rgba(247,243,234,0.88); max-width:44ch; margin:0 auto 30px;}
+  .final-cta .btn-secondary{background:var(--ivory); color:var(--charcoal);}
+  .final-cta .btn-secondary:hover{background:#EDE7D8;}
+  .final-cta .btn-ghost{border-color:rgba(247,243,234,0.5); color:var(--ivory);}
+  .final-cta .btn-ghost:hover{background:rgba(247,243,234,0.12);}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--charcoal); color:#C9C4B6; padding:52px 0 28px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:28px;}
+  .footer-brand .logo-word{color:var(--ivory);}
+  .footer-brand p{font-size:0.85rem; color:#9A9488; margin-top:12px; max-width:32ch;}
+  footer h4{color:var(--ivory); font-family:var(--sans); font-size:0.85rem; margin-bottom:14px; font-weight:700;}
+  footer a, footer p{display:block; font-size:0.85rem; color:#B0AB9D; margin-bottom:9px;}
+  .footer-bottom{
+    text-align:center; font-size:0.78rem; color:#7A7669;
+    margin-top:40px; padding-top:22px; border-top:1px solid rgba(247,243,234,0.1);
+  }
+
+  /* ---------- WhatsApp flotante ---------- */
+  .wa-float{
+    position:fixed; bottom:22px; right:22px; z-index:90;
+    background:#25D366; color:white; width:56px; height:56px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 8px 20px rgba(37,211,102,0.4);
+    transition:transform .18s ease;
+  }
+  .wa-float:hover{transform:scale(1.08);}
+
+  /* ---------- Entrada hero (único momento de motion) ---------- */
+  .reveal{opacity:0; transform:translateY(14px); animation:reveal .7s ease forwards;}
+  .reveal.d1{animation-delay:.05s;}
+  .reveal.d2{animation-delay:.15s;}
+  .reveal.d3{animation-delay:.25s;}
+  @keyframes reveal{to{opacity:1; transform:translateY(0);}}
+
+  /* Foco visible */
+  a:focus-visible, button:focus-visible{
+    outline:2.5px solid var(--terracotta); outline-offset:3px; border-radius:4px;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{padding-top:0; max-width:420px; margin:0 auto;}
+    .combo-grid{grid-template-columns:repeat(2,1fr);}
+    .product-grid{grid-template-columns:repeat(2,1fr);}
+    .inspire-grid{grid-template-columns:1fr 1fr; grid-template-rows:repeat(3,180px); height:auto;}
+    .inspire-item:first-child{grid-row:auto; grid-column:1/3;}
+    .trust-grid{grid-template-columns:1fr; gap:26px;}
+    .footer-grid{grid-template-columns:1fr 1fr; gap:32px;}
+  }
+  @media (max-width: 640px){
+    nav.main-nav{
+      position:absolute; top:76px; left:0; right:0; background:var(--olive);
+      flex-direction:column; align-items:flex-start; padding:8px 24px 20px;
+      display:none; gap:4px;
+      box-shadow:0 12px 20px rgba(0,0,0,0.15);
+    }
+    nav.main-nav.open{display:flex;}
+    nav.main-nav a{width:100%; padding:10px 0; border-bottom:1px solid rgba(247,243,234,0.12);}
+    nav.main-nav a.highlight{width:auto; margin-top:8px;}
+    .menu-toggle{display:block;}
+    .hero-copy{padding:40px 0 36px;}
+    .section{padding:44px 0;}
+    .combo-grid{grid-template-columns:1fr;}
+    .product-grid{grid-template-columns:1fr 1fr;}
+    .section-head{flex-direction:column; align-items:flex-start;}
+    .footer-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="wrap header-inner">
+    <a class="logo" href="#top">
+      <svg class="leaf" width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M12 21C12 21 4 17.5 4 9.5C4 5.5 7 3 12 3C17 3 20 5.5 20 9.5C20 17.5 12 21 12 21Z" stroke="#B86F55" stroke-width="1.6"/>
+        <path d="M12 21V7" stroke="#B86F55" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-word">Made<em>Mía!</em></span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#combos">Dormitorios armados</a>
+      <a href="#categorias">Camas</a>
+      <a href="#categorias">Escritorios</a>
+      <a href="#categorias">Jugueteros</a>
+      <a href="#categorias">Libreros</a>
+      <a href="#categorias">Estantes</a>
+      <a href="#categorias">Mesas de noche</a>
+      <a href="#categorias">Peinadores</a>
+      <a class="highlight" href="#cta">Comprar por WhatsApp</a>
+    </nav>
+
+    <div style="display:flex; align-items:center; gap:18px;">
+      <a class="header-cart" href="#" aria-label="Carrito">🛍</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menú">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal d1">
+      <div class="hero-eyebrow-leaf">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+          <path d="M12 21C12 21 4 17.5 4 9.5C4 5.5 7 3 12 3C17 3 20 5.5 20 9.5C20 17.5 12 21 12 21Z" stroke="#E8DFD1" stroke-width="1.6"/>
+          <path d="M12 21V7" stroke="#E8DFD1" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h1 class="hero-title">Más que muebles,<span class="accent">es vida en tu hogar</span></h1>
+      <p class="hero-sub">Muebles infantiles hechos a medida en Santa Cruz de la Sierra, desde hace 7 años. Camas, escritorios y dormitorios armados pensados para cómo crece tu familia.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-cta" href="#cta">Comprar por WhatsApp</a>
+        <a class="btn btn-secondary" href="#combos">Ver combos populares</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal d2">
+      <!-- Ilustración de ambiente: cuarto infantil armado (placeholder de fotografía real) -->
+      <svg viewBox="0 0 520 460" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="520" height="460" rx="28" fill="#E8DFD1"/>
+        <rect x="0" y="330" width="520" height="130" fill="#DED2BE"/>
+        <!-- pared con ventana -->
+        <rect x="330" y="40" width="130" height="150" rx="6" fill="#F7F3EA" stroke="#8D9A82" stroke-width="3"/>
+        <line x1="395" y1="40" x2="395" y2="190" stroke="#8D9A82" stroke-width="3"/>
+        <line x1="330" y1="115" x2="460" y2="115" stroke="#8D9A82" stroke-width="3"/>
+        <!-- cama -->
+        <rect x="50" y="230" width="220" height="110" rx="14" fill="#8A6F52"/>
+        <rect x="60" y="215" width="200" height="45" rx="10" fill="#F7F3EA"/>
+        <rect x="72" y="224" width="55" height="28" rx="6" fill="#B86F55"/>
+        <rect x="50" y="250" width="220" height="70" rx="10" fill="#56634E"/>
+        <!-- escritorio -->
+        <rect x="300" y="260" width="150" height="16" rx="4" fill="#8A6F52"/>
+        <rect x="310" y="276" width="10" height="70" fill="#8A6F52"/>
+        <rect x="430" y="276" width="10" height="70" fill="#8A6F52"/>
+        <rect x="330" y="200" width="70" height="55" rx="6" fill="#8D9A82"/>
+        <!-- planta -->
+        <circle cx="55" cy="200" r="20" fill="#8D9A82"/>
+        <circle cx="35" cy="185" r="16" fill="#8D9A82"/>
+        <circle cx="75" cy="185" r="16" fill="#8D9A82"/>
+        <rect x="45" y="205" width="20" height="30" rx="4" fill="#B86F55"/>
+        <!-- alfombra -->
+        <ellipse cx="260" cy="390" rx="150" ry="26" fill="#F7F3EA"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATEGORÍAS ============ -->
+<section class="cat-strip" id="categorias">
+  <div class="wrap">
+    <div class="cat-scroll">
+      <a class="cat-chip featured" href="#combos">🌿 Dormitorios armados</a>
+      <a class="cat-chip" href="#">Camas</a>
+      <a class="cat-chip" href="#">Escritorios</a>
+      <a class="cat-chip" href="#">Jugueteros</a>
+      <a class="cat-chip" href="#">Libreros</a>
+      <a class="cat-chip" href="#">Estantes</a>
+      <a class="cat-chip" href="#">Mesas de noche</a>
+      <a class="cat-chip" href="#">Peinadores</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMBOS DESTACADOS ============ -->
+<section class="section combos" id="combos">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Dormitorios <span class="accent-word">armados</span></h2>
+        <p class="section-desc">Nuestra combinación más pedida: cama + escritorio a juego, pensados para acompañar a tu hijo de la cuna al colegio.</p>
+      </div>
+      <a class="btn btn-ghost" href="#cta">Comprar un combo</a>
+    </div>
+
+    <div class="combo-grid">
+      <div class="combo-card">
+        <div class="combo-media">
+          <span class="combo-tag">Más vendido</span>
+        </div>
+        <div class="combo-body">
+          <h3>Combo Roble</h3>
+          <p>Cama nido + escritorio con cajonera, en madera de pino natural.</p>
+          <div class="combo-price">Desde Bs 3.200</div>
+          <a class="btn btn-quote" href="#cta">💬 Comprar este combo</a>
+        </div>
+      </div>
+
+      <div class="combo-card">
+        <div class="combo-media">
+          <span class="combo-tag">Más vendido</span>
+        </div>
+        <div class="combo-body">
+          <h3>Combo Nube</h3>
+          <p>Cama casita Montessori + escritorio bajo, acabado laca blanca.</p>
+          <div class="combo-price">Desde Bs 2.950</div>
+          <a class="btn btn-quote" href="#cta">💬 Comprar este combo</a>
+        </div>
+      </div>
+
+      <div class="combo-card">
+        <div class="combo-media">
+          <span class="combo-tag">Más vendido</span>
+        </div>
+        <div class="combo-body">
+          <h3>Combo Explorador</h3>
+          <p>Cama con guardarropa integrado + escritorio en L, madera nogal.</p>
+          <div class="combo-price">Desde Bs 3.850</div>
+          <a class="btn btn-quote" href="#cta">💬 Comprar este combo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCTOS DESTACADOS ============ -->
+<section class="section" id="productos">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Piezas para completar <span class="accent-word">su cuarto</span></h2>
+        <p class="section-desc">Cada mueble se hace a medida: elige dimensiones, color y acabado de madera al comprar.</p>
+      </div>
+      <a class="btn btn-ghost" href="#">Ver todo el catálogo</a>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-media">
+          <span class="badge-pill badge-new">🌿 Nuevo</span>
+        </div>
+        <div class="product-body">
+          <h4>Juguetero Osito</h4>
+          <div class="product-meta">Medidas y color a elección</div>
+          <div class="product-price">Bs 780</div>
+          <a class="btn-quote" href="#cta">💬 Comprar</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-media">
+          <span class="badge-pill badge-off">-10%</span>
+        </div>
+        <div class="product-body">
+          <h4>Librero Nube</h4>
+          <div class="product-meta">3 acabados en madera</div>
+          <div class="product-price">Bs 690<span class="old">Bs 770</span></div>
+          <a class="btn-quote" href="#cta">💬 Comprar</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-media"></div>
+        <div class="product-body">
+          <h4>Mesa de noche Roble</h4>
+          <div class="product-meta">A juego con toda la línea</div>
+          <div class="product-price">Bs 420</div>
+          <a class="btn-quote" href="#cta">💬 Comprar</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-media">
+          <span class="badge-pill badge-new">🌿 Nuevo</span>
+        </div>
+        <div class="product-body">
+          <h4>Peinador Colibrí</h4>
+          <div class="product-meta">Espejo y cajones incluidos</div>
+          <div class="product-price">Bs 950</div>
+          <a class="btn-quote" href="#cta">💬 Comprar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSPIRACIÓN ============ -->
+<section class="section inspire">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Diseño para <span class="accent-word" style="color:var(--sand);">hogares reales</span></h2>
+        <p class="section-desc">Así se ven los dormitorios completos que hemos armado en Santa Cruz. Imagina el resultado antes de comprar el tuyo.</p>
+      </div>
+    </div>
+
+    <div class="inspire-grid">
+      <div class="inspire-item">
+        <div class="inspire-overlay"></div>
+        <span class="inspire-caption">Cuarto de Emilia, 4 años</span>
+      </div>
+      <div class="inspire-item">
+        <div class="inspire-overlay"></div>
+        <span class="inspire-caption">Combo Roble</span>
+      </div>
+      <div class="inspire-item">
+        <div class="inspire-overlay"></div>
+        <span class="inspire-caption">Rincón de estudio</span>
+      </div>
+      <div class="inspire-item">
+        <div class="inspire-overlay"></div>
+        <span class="inspire-caption">Cuarto compartido</span>
+      </div>
+      <div class="inspire-item">
+        <div class="inspire-overlay"></div>
+        <span class="inspire-caption">Combo Nube</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONFIANZA ============ -->
+<section class="trust">
+  <div class="wrap trust-grid">
+    <div class="trust-item">
+      <svg class="leaf" width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 21C12 21 4 17.5 4 9.5C4 5.5 7 3 12 3C17 3 20 5.5 20 9.5C20 17.5 12 21 12 21Z" stroke="#B86F55" stroke-width="1.6"/><path d="M12 21V7" stroke="#B86F55" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <h3>7 años en Santa Cruz</h3>
+      <p>Fabricamos cada mueble en nuestro taller local, con maderas seleccionadas y acabados no tóxicos.</p>
+    </div>
+    <div class="trust-item">
+      <svg class="leaf" width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 21C12 21 4 17.5 4 9.5C4 5.5 7 3 12 3C17 3 20 5.5 20 9.5C20 17.5 12 21 12 21Z" stroke="#B86F55" stroke-width="1.6"/><path d="M12 21V7" stroke="#B86F55" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <h3>Hecho a tu medida</h3>
+      <p>Tú eliges dimensiones, color y acabado. Ningún cuarto es igual a otro, y tus muebles tampoco.</p>
+    </div>
+    <div class="trust-item">
+      <svg class="leaf" width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 21C12 21 4 17.5 4 9.5C4 5.5 7 3 12 3C17 3 20 5.5 20 9.5C20 17.5 12 21 12 21Z" stroke="#B86F55" stroke-width="1.6"/><path d="M12 21V7" stroke="#B86F55" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <h3>Compra el mismo día</h3>
+      <p>Escríbenos por WhatsApp y te respondemos con precio y tiempos de entrega en minutos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="final-cta" id="cta">
+  <div class="wrap">
+    <h2>Cuéntanos cómo es el cuarto que estás imaginando</h2>
+    <p>Escríbenos por WhatsApp con las medidas del espacio y te ayudamos a armar el dormitorio ideal, paso a paso.</p>
+    <div class="hero-ctas" style="justify-content:center;">
+      <a class="btn btn-secondary" href="https://wa.me/59170000000" target="_blank" rel="noreferrer">💬 Comprar por WhatsApp</a>
+      <a class="btn btn-ghost" href="#combos">Ver combos populares</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <span class="logo-word">Made<em>Mía!</em></span>
+      <p>Muebles de infancia hechos a medida en Santa Cruz de la Sierra. Más que muebles, es vida en tu hogar.</p>
+    </div>
+    <div>
+      <h4>Catálogo</h4>
+      <a href="#">Camas</a>
+      <a href="#">Escritorios</a>
+      <a href="#">Dormitorios armados</a>
+      <a href="#">Jugueteros</a>
+    </div>
+    <div>
+      <h4>MadeMía!</h4>
+      <a href="#">Nuestro taller</a>
+      <a href="#">Cómo comprar</a>
+      <a href="#">Preguntas frecuentes</a>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <p>Santa Cruz de la Sierra, Bolivia</p>
+      <p>Lunes a sábado, 9:00–18:00</p>
+      <a href="https://wa.me/59170000000" target="_blank" rel="noreferrer">WhatsApp</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+  <p class="footer-bottom">© 2026 MadeMía! · Muebles de infancia hechos a medida</p>
+</footer>
+
+<a class="wa-float" href="https://wa.me/59170000000" target="_blank" rel="noreferrer" aria-label="Comprar por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.47 3.48 1.29 4.94L2 22l5.29-1.38a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.06c-.24.68-1.4 1.31-1.93 1.35-.49.05-.99.24-3.33-.7-2.83-1.13-4.63-3.98-4.77-4.16-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.08.99-2.36.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.81 2 .88 2.15.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.41.48-.14.14-.28.29-.12.57.16.28.7 1.16 1.51 1.88 1.04.93 1.91 1.22 2.19 1.36.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.09 1.63.77 1.91.91.28.14.47.21.54.33.07.12.07.68-.17 1.35Z"/></svg>
+</a>
+
+<script>
+  document.getElementById('menuToggle').addEventListener('click', function(){
+    document.getElementById('mainNav').classList.toggle('open');
+  });
+</script>
+
+</body>
+</html>
