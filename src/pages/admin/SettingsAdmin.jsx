@@ -21,6 +21,7 @@ export default function SettingsAdmin() {
         facebook_url: data?.facebook_url || '',
         address: data?.address || '',
         schedule: data?.schedule || '',
+        qr_image_url: data?.qr_image_url || '',
       })
     }
     load()
@@ -39,6 +40,20 @@ export default function SettingsAdmin() {
     try {
       const { publicUrl } = await uploadImage('logo', file)
       setForm((f) => ({ ...f, logo_url: publicUrl }))
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setUploading(false)
+    }
+  }
+
+  async function handleQrUpload(e) {
+    const file = e.target.files[0]
+    if (!file) return
+    setUploading(true)
+    try {
+      const { publicUrl } = await uploadImage('logo', file, 'qr-')
+      setForm((f) => ({ ...f, qr_image_url: publicUrl }))
     } catch (err) {
       setError(err.message)
     } finally {
@@ -79,6 +94,15 @@ export default function SettingsAdmin() {
         <div className="field">
           <label>WhatsApp (con código de país, sin +)</label>
           <input name="whatsapp_number" value={form.whatsapp_number} onChange={handleChange} placeholder="59170000000" />
+        </div>
+        <div className="field">
+          <label>QR de pago (banco o billetera digital)</label>
+          <input type="file" accept="image/jpeg,image/png,image/webp" onChange={handleQrUpload} />
+          {uploading && <p style={{ fontSize: '0.85rem' }}>Subiendo...</p>}
+          {form.qr_image_url && <img src={form.qr_image_url} alt="QR de pago" style={{ width: 140, marginTop: 8, borderRadius: 8, border: '1px solid var(--color-border)' }} />}
+          <p style={{ fontSize: '0.8rem', color: 'var(--color-text-light)', marginTop: 6 }}>
+            Se muestra al cliente al confirmar su pedido, para que pueda pagar escaneando.
+          </p>
         </div>
         <div className="field">
           <label>Email de contacto</label>
