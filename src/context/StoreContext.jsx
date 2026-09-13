@@ -12,6 +12,7 @@ const DEFAULT_SETTINGS = {
   facebook_url: null,
   address: null,
   schedule: null,
+  qr_image_url: null,
 }
 
 export function StoreProvider({ children }) {
