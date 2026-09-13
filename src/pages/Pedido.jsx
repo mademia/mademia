@@ -92,6 +92,21 @@ export default function Pedido() {
           Tu número de pedido es <strong>{createdOrder.order_number}</strong>.
           Envíalo por WhatsApp para confirmar los detalles y coordinar la entrega.
         </p>
+
+        {settings.qr_image_url && (
+          <div className="card" style={{ padding: 20, marginBottom: 20, textAlign: 'center' }}>
+            <h3 style={{ marginBottom: 10 }}>Escanea para pagar</h3>
+            <img
+              src={settings.qr_image_url}
+              alt="Código QR de pago"
+              style={{ width: 220, margin: '0 auto', borderRadius: 8 }}
+            />
+            <p style={{ fontSize: '0.85rem', color: 'var(--color-text-light)', marginTop: 12 }}>
+              Después de pagar, envía tu comprobante por WhatsApp junto con tu número de pedido para confirmarlo.
+            </p>
+          </div>
+        )}
+
         <WhatsAppButton
           href={whatsappOrderLink(settings.whatsapp_number, createdOrder, createdItems)}
           label="Enviar pedido por WhatsApp"
