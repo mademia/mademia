@@ -1,21 +1,21 @@
 :root {
-  --color-bg: #FBF7F2;
-  --color-surface: #FFFFFF;
-  --color-primary: #C97B57;
-  --color-primary-dark: #A85F3F;
-  --color-secondary: #7C9885;
-  --color-text: #2E2A26;
-  --color-text-light: #6B6259;
-  --color-border: #E8DFD3;
-  --color-success: #7C9885;
-  --color-warning: #D9A441;
-  --color-danger: #C15B4A;
-  --radius: 14px;
-  --radius-sm: 8px;
-  --shadow: 0 4px 16px rgba(46, 42, 38, 0.08);
-  --shadow-hover: 0 8px 24px rgba(46, 42, 38, 0.12);
-  --font-heading: 'Georgia', 'Times New Roman', serif;
-  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --color-bg: #FFFFFF;
+  --color-surface: #FAFAF8;
+  --color-primary: #2BB5B0;
+  --color-primary-dark: #1F8F8B;
+  --color-secondary: #8D9A82;
+  --color-text: #1A1A1A;
+  --color-text-light: #6B6B6B;
+  --color-border: #E6E6E2;
+  --color-success: #2BB5B0;
+  --color-warning: #E0A94D;
+  --color-danger: #E0654F;
+  --radius: 18px;
+  --radius-sm: 12px;
+  --shadow: 0 6px 20px rgba(0,0,0,0.07);
+  --shadow-hover: 0 10px 26px rgba(0,0,0,0.1);
+  --font-heading: 'Baloo 2', 'Segoe UI', sans-serif;
+  --font-body: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --max-width: 1200px;
 }
 
@@ -33,8 +33,8 @@ html, body {
 
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
-  font-weight: 600;
-  line-height: 1.2;
+  font-weight: 700;
+  line-height: 1.15;
   margin: 0 0 0.5em;
 }
 
@@ -55,10 +55,11 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 22px;
+  padding: 13px 24px;
   border-radius: 999px;
   border: none;
-  font-size: 0.95rem;
+  font-family: var(--font-heading);
+  font-size: 1rem;
   font-weight: 600;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
   white-space: nowrap;
@@ -73,10 +74,10 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 
 .btn-outline {
   background: transparent;
-  border: 1.5px solid var(--color-primary);
-  color: var(--color-primary-dark);
+  border: 2px solid var(--color-text);
+  color: var(--color-text);
 }
-.btn-outline:hover { background: rgba(201,123,87,0.08); }
+.btn-outline:hover { background: rgba(26,26,26,0.06); }
 
 .btn-whatsapp {
   background: #25D366;
@@ -97,6 +98,7 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 /* Card */
 .card {
   background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
@@ -131,15 +133,16 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 
 .badge {
   display: inline-block;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
 }
-.badge-success { background: rgba(124,152,133,0.15); color: #4E6E58; }
-.badge-warning { background: rgba(217,164,65,0.18); color: #8A6417; }
-.badge-danger { background: rgba(193,91,74,0.15); color: #93392A; }
-.badge-muted { background: rgba(107,98,89,0.1); color: var(--color-text-light); }
+.badge-success { background: var(--color-success); color: white; }
+.badge-warning { background: var(--color-warning); color: white; }
+.badge-danger { background: var(--color-danger); color: white; }
+.badge-muted { background: rgba(107,107,107,0.12); color: var(--color-text-light); }
 
 .grid {
   display: grid;
