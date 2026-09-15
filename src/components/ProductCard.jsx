@@ -97,7 +97,7 @@ const styles = {
   body: { padding: 16, display: 'flex', flexDirection: 'column', flex: 1 },
   name: {
     fontSize: '1rem',
-    fontFamily: 'var(--font-body)',
+    fontFamily: 'var(--font-heading)',
     fontWeight: 600,
     margin: '0 0 6px',
   },
