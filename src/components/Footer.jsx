@@ -16,6 +16,7 @@ export default function Footer() {
           <Link to="/" style={styles.link}>Inicio</Link>
           <Link to="/tienda" style={styles.link}>Tienda</Link>
           <Link to="/carrito" style={styles.link}>Carrito</Link>
+          <Link to="/politicas" style={styles.link}>Envíos y devoluciones</Link>
         </div>
         <div>
           <h4 style={styles.heading}>Contacto</h4>
