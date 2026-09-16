@@ -9,6 +9,7 @@ import Tienda from './pages/Tienda'
 import Producto from './pages/Producto'
 import Carrito from './pages/Carrito'
 import Pedido from './pages/Pedido'
+import Politicas from './pages/Politicas'
 
 import Login from './pages/admin/Login'
 import Dashboard from './pages/admin/Dashboard'
@@ -36,6 +37,7 @@ export default function App() {
       <Route path="/producto/:slug" element={<StoreLayout><Producto /></StoreLayout>} />
       <Route path="/carrito" element={<StoreLayout><Carrito /></StoreLayout>} />
       <Route path="/pedido" element={<StoreLayout><Pedido /></StoreLayout>} />
+      <Route path="/politicas" element={<StoreLayout><Politicas /></StoreLayout>} />
 
       <Route path="/admin/login" element={<Login />} />
       <Route
